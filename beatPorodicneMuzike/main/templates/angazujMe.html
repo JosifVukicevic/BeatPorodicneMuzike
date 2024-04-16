@@ -1,0 +1,43 @@
+{% include 'nav_bar.html' %}
+{% load static %}
+
+
+<div class="angazuj-container">
+    <h2 class="heading-for-angaz">Angažuj muzičara/e</h2>
+    <form action="/angazuj_muzicara" method="post" id="angMuz">
+        {% csrf_token %}
+        {{ forma.as_p }}
+        <label for="imePrezime">Vaše ime i prezime:</label>
+        <input type="text" id="imePrezime" name="ime_prezime" required>
+
+        <label for="mjestoZurke">Mjesto održavanja svirke:</label>
+        <input type="text" id="mjestoZurke" name="mjesto_zurke" required>
+
+        <label for="vrijeme">Vrijeme (od - do)</label>
+        <input type="text" id="vrijeme" name="vrijeme" required>
+
+        <label for="datum">Datum održavanja svirke:</label>
+        <input type="date" id="datum" name="datum" required>
+
+        <label for="email">E-mail adresa:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="telefon">Broj telefona:</label>
+        <input type="tel" id="telefon" name="telefon" required>
+
+        <label>Odaberite muzičara</label>
+        <select id="filter-select" name="muzicar">
+            <option value="Jole">DJ Jole</option>
+            <option value="Pedja">Peđa Vukićević</option>
+            <option value="all">DJ Jole i Peđa Vukićević</option>
+        </select>
+
+        <button type="submit" class="dugmeZaAngaz">Angažuj muzičara/e</button>
+    </form>
+</div>
+
+
+{% include 'footer.html' %}
+</body>
+
+</html>

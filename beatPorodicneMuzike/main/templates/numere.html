@@ -1,0 +1,43 @@
+{% include 'nav_bar.html' %}
+{% load static %}
+
+    <div class="centerMain" style="padding-top: 0;">
+  <div class="song-filter">
+    <h1>Pretraga po izvođaču</h1>
+    <div class="ajV">
+      <select id="filter-select">
+        <option value="all">Pogledaj sve</option>
+        <option value="DJ Jole">DJ Jole</option>
+        <option value="Pedja">Peđa Vukićević</option>
+      </select>
+      <p id="result-count" class="result-count"></p>
+    </div>
+  </div>
+</div>
+
+
+<div class="centr_playlist">
+    <div class="playlist">
+        {% for song in songs %}
+        <div class="song" data-category="{{ song.artist }}">
+            <img src="{{ song.image.url }}" alt="Naslovna slika">
+            <div class="song-info">
+                <h1>{{ song.title }}</h1>
+                <div class="progress-bar" id="progressBar{{ forloop.counter }}"></div>
+                <button id="playButton{{ forloop.counter }}" class="play-button" onclick="togglePlayPause('audio{{ forloop.counter }}', 'playButton{{ forloop.counter }}')">Pusti</button>
+                {% if song.allow_download %}
+                <a href="{{ song.audio_file.url }}" download="{{ song.audio_file.url }}">Preuzmi</a>
+                {% endif %}
+            </div>
+            <audio id="audio{{ forloop.counter }}" src="{{ song.audio_file.url }}" ontimeupdate="updateProgressBar('audio{{ forloop.counter }}', 'progressBar{{ forloop.counter }}', 'playButton{{ forloop.counter }}')"></audio>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% include 'footer.html' %}
+  <script src="{% static 'js/script-for-filterSongs.js' %}"></script>
+</body>
+
+</html>

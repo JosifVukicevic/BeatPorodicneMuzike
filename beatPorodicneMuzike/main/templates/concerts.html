@@ -1,0 +1,78 @@
+{% include 'nav_bar.html' %}
+{% load static %}
+
+<div class="backgro_mh">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="heding">
+                    <h2>Nastupi</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="upcoming" class="upcoming">
+    <div class="container-fluid padding_left3">
+        <div class="row display_boxflex">
+            <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12">
+                <div class="box_text">
+                    <div class="titlepage">
+                        <h2>Putovanje kroz naše scenske nastupe</h2>
+                    </div>
+                    <p>Zavirite iza kulisa ovih muzičkih avantura kroz kolekciju reklamnih postera sa prošlih nastupa.
+                        Svaki poster je vlastita priča, koji označavaju mjesta gdje smo dijelili strast prema muzici sa
+                        zajednicom.
+                        Ovi vizuelni prikazi su poziv na putovanje kroz različite lokacije i događaje koje smo obogatili
+                        zvukom i
+                        ritmom.
+                        Ovi reklamni posteri svjedoče o jedinstvenim trenucima kreativnosti i interakcije sa publikom
+                        koje smo
+                        doživjeli
+                        na različitim lokacijama.
+                        Pogledajte i ostale postere, odnosno naša prethodna ili buduća gostovanja.</p>
+                </div>
+            </div>
+
+            <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12 border_right">
+                <div class="upcomimg">
+                    <figure><img src="{% static 'images/godina2023.png' %}" alt="#"/></figure>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Filter za pretragu -->
+
+    <div class="centerMain">
+        <div class="image-filter">
+            <h1>Pretraga po izvođaču</h1>
+            <!--<label for="filter-select" class="filter-label">Filter:</label>-->
+            <div class="ajV">
+                <select id="filter-select">
+                    <option value="all">Pogledaj sve</option>
+                    <option value="DJ Jole">DJ Jole</option>
+                    <option value="Pedja">Peđa Vukićević</option>
+                </select>
+                <p id="result-count" class="result-count"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="image-gallery">
+        {% for slika in slike %}
+        <div class="image-box" data-category="{{ slika.kategorija }}">
+            <img src="{{ slika.slika.url }}" alt="{{ slika.naziv }}" class="gallery-image">
+            <div class="image-description">{{ slika.opis }}</div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+    {% include 'footer.html' %}
+    <script src="{% static 'js/script-for-filter.js' %}"></script>
+    </body>
+
+    </html>
